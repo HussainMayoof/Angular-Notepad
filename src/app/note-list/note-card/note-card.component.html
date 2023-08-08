@@ -1,0 +1,13 @@
+<div class="note-card-container">
+    <mat-divider></mat-divider>
+
+    <div class="d-flex ps-3 mt-3" (click)="noteClicked()">
+        <h4>{{note.title.length>6 ? (note.title | slice:0:6) + '...' : note.title}}</h4>
+        <p class="ms-5">
+            {{note.contents.length>125 ? (note.contents | slice:0:125) + '...' : note.contents}}
+        </p>
+        <div class="ms-auto me-2" (click)="deleteNote($event)">
+            <mat-icon class="delete-icon">delete</mat-icon>
+        </div>
+    </div>
+</div>

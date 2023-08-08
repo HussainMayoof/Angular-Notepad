@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Delete note</h1>
+<div mat-dialog-content>
+  <p>
+    Are you sure you want to delete the note {{note.title.length>6 ? (note.title | slice:0:6) + '...' : note.title}}?
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-secondary me-2 " mat-dialog-close>Cancel</button>
+  <button class="btn btn-danger" mat-dialog-close cdkFocusInitial [mat-dialog-close]="'deleteNote'">Delete</button>
+</div>

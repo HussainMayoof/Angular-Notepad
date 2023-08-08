@@ -1,0 +1,14 @@
+@import "../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../node_modules/bootstrap/scss/variables-dark";
+
+:hover {
+    cursor: pointer;
+
+    background-color: darken($white, 5%);
+    transition: background-color 0.2s ease-in;
+}
+
+h4 {
+    font-weight: 500;
+}

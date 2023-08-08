@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "notepad-d6a45": {
+      "hosting": {
+        "notepad": [
+          "notepad-hussain"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "notepad-d6a45"
+  }
+}

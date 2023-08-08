@@ -1,0 +1,7 @@
+<div class="card mt-3">
+    <h1 class="ms-3 mt-3">Note List:</h1>
+
+    <div *ngFor="let note of notes">
+        <app-note-card [note]="note" (noteClick)="noteClicked(note)" (noteDelete)="deleteNote($event)"></app-note-card>
+    </div>
+</div>

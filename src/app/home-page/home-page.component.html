@@ -1,0 +1,12 @@
+<div class="container-fluid px-0 mx-0">
+    <nav class="navbar bg-dark">
+        <div class="container-fluid">
+          <a href="/" class="navbar-brand text-white">Notepad</a>
+        </div>
+    </nav>
+
+    <div class="mx-4 mt-4">
+        <button class="btn btn-success" (click)="newNoteClick()">New note</button>
+        <app-note-list [notes]="notes" (noteClick)="editNote($event)" (noteDelete)="deleteNote($event)"></app-note-list>
+    </div>
+</div>

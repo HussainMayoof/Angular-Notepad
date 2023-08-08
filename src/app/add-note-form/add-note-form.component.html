@@ -1,0 +1,43 @@
+<div class="container mt-4">
+    <div class="row">
+        <div *ngIf="!edit" class="d-flex justify-content-between" mat-dialog-title>
+            <h2>Add Note</h2>
+            <button mat-icon-button aria-label="close dialog" mat-dialog-close>
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        
+        <form #noteForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="d-flex justify-content-between">
+                <div class="form-floating mb-3 col-2">
+                    <input type="text" class="form-control" required name="title" id="title" placeholder="Example note" [(ngModel)]="note.title" [ngClass]="{'is-invalid': (!title.valid && (title.dirty || title.touched))}" #title="ngModel">
+                    <label for="title">Note Title</label>
+                    <div *ngIf="(title.errors?.['required']) && (title.invalid && (title.dirty || title.touched))" class="invalid-feedback">
+                        Title is required.
+                    </div>
+                </div>
+
+                <div *ngIf="edit">
+                    <button mat-icon-button mat-dialog-close>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3 col-12 ">
+                <textarea class="form-control" required name="contents" id="contents" placeholder="Write your note!"  style="height: 325px;" [(ngModel)]="note.contents" [ngClass]="{'is-invalid': (!contents.valid && (contents.dirty || contents.touched))}" #contents="ngModel"></textarea>
+                <div *ngIf="(contents.errors?.['required']) && contents.invalid && (contents.dirty || contents.touched)" class="invalid-feedback">
+                    Contents are required.
+                </div>
+            </div>
+
+            <div class="mb-2" *ngIf="!edit">
+                <button class="btn btn-success me-2" type="submit" [disabled]="!noteForm.form.valid">Create Note</button>
+            </div>
+
+            <div class="mb-2" *ngIf="edit">
+                <button class="btn btn-success me-2" type="submit" [disabled]="!noteForm.form.valid">Save Note</button>
+            </div>
+        </form>
+    </div>
+</div>
