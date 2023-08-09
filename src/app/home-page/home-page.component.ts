@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Note } from 'src/shared/models/note';
 import { MatDialog } from '@angular/material/dialog';
 import { AddNoteFormComponent } from '../add-note-form/add-note-form.component';
@@ -10,6 +10,9 @@ import { AddNoteFormComponent } from '../add-note-form/add-note-form.component';
 })
 export class HomePageComponent {
   notes: Note[] = new Array<Note>;
+  paginatedNotes!: Note[];
+  initialIndex: number = 0;
+  finalIndex: number = 10;
 
   constructor(public dialog: MatDialog) {}
 
@@ -26,6 +29,7 @@ export class HomePageComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== '') {
         this.notes.push(result);
+      this.paginatedNotes =  this.notes.slice(this.initialIndex, this.finalIndex);
       }
     });
   }
@@ -33,7 +37,7 @@ export class HomePageComponent {
   editNote(note: Note) {
     let dialogRef = this.dialog.open(AddNoteFormComponent, {
       width: '750px',
-      height: '500px',
+      height: '450px',
       autoFocus: false,
       disableClose: true,
       data: {
@@ -48,11 +52,19 @@ export class HomePageComponent {
       if (result !== '') {
         console.log(result);
         this.notes[this.notes.indexOf(note)] = result;
+      this.paginatedNotes =  this.notes.slice(this.initialIndex, this.finalIndex);
       }
     });
   }
 
   deleteNote(note: Note) {
     this.notes.splice(this.notes.indexOf(note), 1);
+    this.paginatedNotes =  this.notes.slice(this.initialIndex, this.finalIndex);
+  }
+
+  onPageChange($event: any) {
+    this.initialIndex = $event.pageIndex*$event.pageSize;
+    this.finalIndex = $event.pageIndex*$event.pageSize + $event.pageSize;
+    this.paginatedNotes =  this.notes.slice(this.initialIndex, this.finalIndex);
   }
 }

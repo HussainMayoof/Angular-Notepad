@@ -7,6 +7,11 @@
 
     <div class="mx-4 mt-4">
         <button class="btn btn-success" (click)="newNoteClick()">New note</button>
-        <app-note-list [notes]="notes" (noteClick)="editNote($event)" (noteDelete)="deleteNote($event)"></app-note-list>
+        <app-note-list [notes]="paginatedNotes" (noteClick)="editNote($event)" (noteDelete)="deleteNote($event)"></app-note-list>
     </div>
+
+    <br>
+
+    <mat-paginator (page)="onPageChange($event)" [length]="notes.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+    </mat-paginator>
 </div>
